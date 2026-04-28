@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Door / box left side -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M9,21
+            L5,21
+            C4.47,21 3.96,20.79 3.59,20.41
+            C3.21,20.04 3,19.53 3,19
+            L3,5
+            C3,4.47 3.21,3.96 3.59,3.59
+            C3.96,3.21 4.47,3 5,3
+            L9,3" />
+
+    <!-- Arrow pointing right (exit arrow) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M16,17 L21,12 L16,7" />
+
+    <!-- Horizontal arrow shaft -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.7"
+        android:strokeLineCap="round"
+        android:pathData="M21,12 L9,12" />
+
+</vector>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Dinex Design System (Updated to White/Blue Theme) -->
+    <color name="dinex_dark">#FFFFFF</color>
+    <color name="dinex_gray_dark">#F3F4F6</color>
+    <color name="dinex_gray_light">#D1D5DB</color>
+    <color name="dinex_coral">#3B82F6</color>
+    <color name="dinex_coral_light">#60A5FA</color>
+    <color name="dinex_background">#F9FAFB</color>
+    <color name="dinex_text_primary">#111827</color>
+    <color name="dinex_text_secondary">#6B7280</color>
+    <color name="dinex_bubble_me">#3B82F6</color>
+    <color name="dinex_bubble_other">#F3F4F6</color>
+</resources>

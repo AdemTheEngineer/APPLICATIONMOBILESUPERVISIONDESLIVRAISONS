@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!--  Bell body  -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M5,14.5
+            C5,10.358 7.686,7 12,7
+            C16.314,7 19,10.358 19,14.5
+            L19,18
+            L5,18
+            Z"
+        android:strokeColor="#9E9E9E"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!--  Bell stem / top knob  -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M12,7 L12,5"
+        android:strokeColor="#9E9E9E"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round" />
+
+    <!--  Top circle (mounting point)  -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M12,5 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"
+        android:strokeColor="#9E9E9E"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round" />
+
+    <!--  Bottom bar  -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M3,18 L21,18"
+        android:strokeColor="#9E9E9E"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round" />
+
+    <!--  Clapper / bell base curve  -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M10,18 C10,19.105 10.895,20 12,20 C13.105,20 14,19.105 14,18"
+        android:strokeColor="#9E9E9E"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round" />
+
+</vector>

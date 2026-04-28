@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Triangle outline -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D32F2F"
+        android:strokeWidth="1.7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M10.29,3.86
+            L1.82,18
+            C1.64,18.32 1.55,18.68 1.56,19.04
+            C1.57,19.4 1.68,19.75 1.88,20.06
+            C2.08,20.37 2.36,20.62 2.69,20.78
+            C3.02,20.95 3.39,21.02 3.75,21
+            L20.25,21
+            C20.61,21.02 20.98,20.95 21.31,20.78
+            C21.64,20.62 21.92,20.37 22.12,20.06
+            C22.32,19.75 22.43,19.4 22.44,19.04
+            C22.45,18.68 22.36,18.32 22.18,18
+            L13.71,3.86
+            C13.52,3.56 13.26,3.31 12.95,3.13
+            C12.64,2.96 12.29,2.87 11.94,2.87
+            C11.59,2.87 11.24,2.96 10.93,3.13
+            C10.62,3.31 10.36,3.56 10.17,3.86
+            Z" />
+
+    <!-- Exclamation vertical bar -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D32F2F"
+        android:strokeWidth="1.7"
+        android:strokeLineCap="round"
+        android:pathData="M12,9 L12,13" />
+
+    <!-- Exclamation dot -->
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M12,17 m-0.75,0 a0.75,0.75 0 1,0 1.5,0 a0.75,0.75 0 1,0 -1.5,0" />
+
+</vector>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">APPLICATION MOBILE SUPERVISION DES LIVRAISONS</string>
+    <string name="detail_adresse_format">%1$s, %2$s</string>
+    <string name="detail_commande_format">Commande #%1$s (Ordre: %2$s)</string>
+    <string name="detail_articles_format">%1$d article(s)</string>
+    <string name="detail_paiement_format">Paiement: %1$s</string>
+    <string name="detail_montant_format">%.2f DT</string>
+    <string name="driver_hub_header">Hi, %1$s</string>
+    <string name="hub_sender_time_format">%1$s • %2$s</string>
+    <string name="driver_format">Driver: %1$s</string>
+    <string name="livraison_adapter_cmd_format">#%1$d - %2$s</string>
+    <string name="livreur_remaining_format">%1$d remaining deliveries</string>
+    <string name="search_all_deliveries_format">All deliveries — %1$d total</string>
+    <string name="search_results_found">%1$d result%2$s found</string>
+    <string name="livraison_montant_format">%.2f DT</string>
+</resources>
