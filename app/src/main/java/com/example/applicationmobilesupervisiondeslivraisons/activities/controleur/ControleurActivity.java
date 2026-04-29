@@ -14,6 +14,7 @@ import com.example.applicationmobilesupervisiondeslivraisons.activities.MainActi
 import com.example.applicationmobilesupervisiondeslivraisons.adapters.LivraisonAdapter;
 import com.example.applicationmobilesupervisiondeslivraisons.models.Livraison;
 import com.example.applicationmobilesupervisiondeslivraisons.supabase.SupabaseManager;
+import com.example.applicationmobilesupervisiondeslivraisons.views.DonutChartView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class ControleurActivity extends AppCompatActivity {
     private LivraisonAdapter adapter;
     private List<Livraison>  currentList = new ArrayList<>();
     private TextView         tvPending, tvTransit, tvDelivered, tvFailed;
+    private DonutChartView   donutChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class ControleurActivity extends AppCompatActivity {
         tvTransit   = findViewById(R.id.tv_transit_count);
         tvDelivered = findViewById(R.id.tv_delivered_count);
         tvFailed    = findViewById(R.id.tv_failed_count);
+        donutChart  = findViewById(R.id.donut_chart);
 
         TextView tvTitle = findViewById(R.id.tv_dashboard_title);
         if (tvTitle != null) {
@@ -112,15 +115,32 @@ public class ControleurActivity extends AppCompatActivity {
         for (Livraison l : list) {
             String etat = l.getEtat() != null
                     ? l.getEtat().toLowerCase(java.util.Locale.ROOT) : "";
-            if      (etat.contains("cours")  || etat.contains("transit")) transit++;
-            else if (etat.contains("livr")   || etat.contains("termin"))  delivered++;
-            else if (etat.contains("échou")  || etat.contains("annul")
-                    || etat.contains("fail"))                                failed++;
-            else                                                           pending++;
+
+            // ── Match the actual French status values used in the app:
+            //    "En attente"  → pending   (contains "attente")
+            //    "En cours"    → transit   (contains "cours")
+            //    "Livrée"      → delivered (contains "livr")
+            //    "Annulée"     → failed    (contains "annul")
+            if      (etat.contains("cours")   || etat.contains("transit"))  transit++;
+            else if (etat.contains("livr")    || etat.contains("termin")
+                    || etat.contains("deliver"))                            delivered++;
+            else if (etat.contains("annul")   || etat.contains("echou")
+                    || etat.contains("échou")  || etat.contains("fail")
+                    || etat.contains("refus"))                              failed++;
+            else if (etat.contains("attente") || etat.contains("pending")
+                    || etat.isEmpty())                                      pending++;
+            else                                                            pending++;
         }
+
+        // ── Update stat cards ────────────────────────────────────────────────
         if (tvPending   != null) tvPending.setText(String.valueOf(pending));
         if (tvTransit   != null) tvTransit.setText(String.valueOf(transit));
         if (tvDelivered != null) tvDelivered.setText(String.valueOf(delivered));
         if (tvFailed    != null) tvFailed.setText(String.valueOf(failed));
+
+        // ── Update donut chart with real proportions ─────────────────────────
+        if (donutChart != null) {
+            donutChart.setData(pending, transit, delivered, failed);
+        }
     }
 }

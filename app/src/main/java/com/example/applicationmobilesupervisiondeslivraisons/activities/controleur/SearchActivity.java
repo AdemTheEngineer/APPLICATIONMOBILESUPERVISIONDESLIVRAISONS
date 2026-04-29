@@ -15,6 +15,7 @@ import com.example.applicationmobilesupervisiondeslivraisons.R;
 import com.example.applicationmobilesupervisiondeslivraisons.adapters.LivraisonAdapter;
 import com.example.applicationmobilesupervisiondeslivraisons.models.Livraison;
 import com.example.applicationmobilesupervisiondeslivraisons.supabase.SupabaseManager;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private LivraisonAdapter  adapter;
     private TextInputEditText editSearch;
-    private TextInputEditText editDate;
+    private TextView          tvDate;
+    private View              btnClearDate;
     private TextView          tvResultsCount;
     private RecyclerView      recyclerSearch;
     private View              layoutEmpty;
@@ -39,7 +41,8 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         editSearch     = findViewById(R.id.edit_search);
-        editDate       = findViewById(R.id.edit_date);
+        tvDate         = findViewById(R.id.edit_date);
+        btnClearDate   = findViewById(R.id.btn_clear_date);
         tvResultsCount = findViewById(R.id.tv_results_count);
         recyclerSearch = findViewById(R.id.recycler_search);
         layoutEmpty    = findViewById(R.id.layout_empty);
@@ -77,25 +80,36 @@ public class SearchActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) { applyFilters(); }
         };
         editSearch.addTextChangedListener(watcher);
-        editDate.addTextChangedListener(watcher);
 
-        editDate.setFocusable(false);
-        editDate.setClickable(true);
-        editDate.setOnClickListener(v -> {
+        // ── Date picker — opens a DatePickerDialog on tap ────────────────────
+        View cardDate = findViewById(R.id.card_date);
+        View.OnClickListener dateClickListener = v -> {
             java.util.Calendar calendar = java.util.Calendar.getInstance();
             android.app.DatePickerDialog dialog = new android.app.DatePickerDialog(this,
                     (view, year, month, dayOfMonth) -> {
-                        // month is 0-based
-                        String selectedDate = String.format(java.util.Locale.ROOT, "%04d-%02d-%02d", year, month + 1, dayOfMonth);
-                        editDate.setText(selectedDate);
+                        String selectedDate = String.format(java.util.Locale.ROOT,
+                                "%04d-%02d-%02d", year, month + 1, dayOfMonth);
+                        tvDate.setText(selectedDate);
+                        if (btnClearDate != null) btnClearDate.setVisibility(View.VISIBLE);
+                        applyFilters();
                     },
                     calendar.get(java.util.Calendar.YEAR),
                     calendar.get(java.util.Calendar.MONTH),
                     calendar.get(java.util.Calendar.DAY_OF_MONTH)
             );
-            dialog.setButton(android.content.DialogInterface.BUTTON_NEUTRAL, "Effacer", (d, w) -> editDate.setText(""));
             dialog.show();
-        });
+        };
+        if (cardDate != null) cardDate.setOnClickListener(dateClickListener);
+        tvDate.setOnClickListener(dateClickListener);
+
+        // ── Clear date button ────────────────────────────────────────────────
+        if (btnClearDate != null) {
+            btnClearDate.setOnClickListener(v -> {
+                tvDate.setText("");
+                btnClearDate.setVisibility(View.GONE);
+                applyFilters();
+            });
+        }
 
         View btnFilter = findViewById(R.id.btn_filter);
         if (btnFilter != null) btnFilter.setOnClickListener(v -> showFilterDialog());
@@ -111,7 +125,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void applyFilters() {
         String query     = editSearch.getText() != null ? editSearch.getText().toString().trim().toLowerCase(java.util.Locale.ROOT) : "";
-        String dateQuery = editDate.getText()   != null ? editDate.getText().toString().trim() : "";
+        String dateQuery = tvDate.getText()     != null ? tvDate.getText().toString().trim() : "";
 
         List<Livraison> result = new ArrayList<>();
 

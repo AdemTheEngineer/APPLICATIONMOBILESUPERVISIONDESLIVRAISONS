@@ -66,9 +66,9 @@
         <!-- Text search field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_search"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:boxBackgroundColor="#FFFFFF"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -84,14 +84,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_search"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
+                android:layout_height="wrap_content"
                 android:hint="Search Order, Customer, Driver..."
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColor="#111827"
                 android:textColorHint="#9CA3AF"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,34 +102,59 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <!-- Date input -->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <!-- Date picker button -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_date"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="#E5E7EB"
-                app:boxStrokeWidth="1dp"
-                app:hintEnabled="false">
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E5E7EB"
+                app:strokeWidth="1dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_date"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
-                    android:hint="mm/dd/yyyy"
-                    android:inputType="date"
-                    android:textColor="#111827"
-                    android:textColorHint="#9CA3AF"
-                    android:textSize="13sp" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="6dp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:contentDescription="Calendar"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="#6B7280" />
+
+                    <TextView
+                        android:id="@+id/edit_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Select date"
+                        android:textColor="#111827"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="13sp" />
+
+                    <ImageButton
+                        android:id="@+id/btn_clear_date"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Clear date"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:visibility="gone"
+                        app:tint="#9CA3AF" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Filter icon button -->
             <com.google.android.material.card.MaterialCardView

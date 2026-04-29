@@ -342,31 +342,12 @@
                         android:textColor="#6B7280"
                         android:layout_marginBottom="24dp"/>
                     
-                    <!-- A pseudo-chart represented by a styled ring to mimic the donut chart shape -->
-                    <LinearLayout
-        android:baselineAligned="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="140dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        
-                         <com.google.android.material.card.MaterialCardView
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            app:cardCornerRadius="70dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeColor="#3B82F6"
-                            app:strokeWidth="18dp"
-                            app:cardElevation="0dp">
-                            <com.google.android.material.card.MaterialCardView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:cardCornerRadius="70dp"
-                                app:cardBackgroundColor="#FFFFFF"
-                                app:cardElevation="0dp"
-                                app:strokeWidth="0dp"/>
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
+                    <!-- Real donut chart drawn from live status data -->
+                    <com.example.applicationmobilesupervisiondeslivraisons.views.DonutChartView
+                        android:id="@+id/donut_chart"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_gravity="center" />
                     
                     <LinearLayout
         android:baselineAligned="false"

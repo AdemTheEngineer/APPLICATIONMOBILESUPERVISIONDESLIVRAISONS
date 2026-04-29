@@ -167,15 +167,16 @@ public class LivraisonAdapter extends RecyclerView.Adapter<LivraisonAdapter.Livr
                 barColor  = 0xFF10B981; // green
                 badgeBg   = 0x1A10B981;
                 badgeText = 0xFF10B981;
-            } else if (etatLow.contains("échou") || etatLow.contains("annul")
-                    || etatLow.contains("fail")) {
+            } else if (etatLow.contains("échou") || etatLow.contains("echou")
+                    || etatLow.contains("annul") || etatLow.contains("fail")
+                    || etatLow.contains("refus")) {
                 barColor  = 0xFFEF4444; // red
                 badgeBg   = 0x1AEF4444;
                 badgeText = 0xFFEF4444;
             } else {
-                barColor  = 0xFFFF6B6B; // dinex coral default
-                badgeBg   = 0x1AFF6B6B;
-                badgeText = 0xFFFF6B6B;
+                barColor  = 0xFFF59E0B; // amber — treat unknown as pending
+                badgeBg   = 0x1AF59E0B;
+                badgeText = 0xFFF59E0B;
             }
 
             viewStatusBar.setBackgroundColor(barColor);
