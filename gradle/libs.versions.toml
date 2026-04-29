@@ -13,6 +13,7 @@ kotlin = "2.3.21"
 supabase = "3.5.0"
 ktor = "3.4.3"
 coreKtx = "1.18.0"
+swiperefreshlayout = "1.2.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -31,6 +32,7 @@ supabase-realtime = { group = "io.github.jan-tennert.supabase", name = "realtime
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.7.3" }
+swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

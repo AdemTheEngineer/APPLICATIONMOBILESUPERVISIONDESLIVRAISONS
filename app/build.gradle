@@ -71,6 +71,7 @@ dependencies {
 
     // Serialization (MOVE this to version catalog if possible)
     implementation(libs.kotlinx.serialization.json)
+    implementation libs.swiperefreshlayout
 
     // Testing
     testImplementation(libs.junit)

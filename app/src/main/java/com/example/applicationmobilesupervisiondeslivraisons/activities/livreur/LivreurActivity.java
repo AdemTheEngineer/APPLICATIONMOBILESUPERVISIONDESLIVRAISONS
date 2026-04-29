@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.applicationmobilesupervisiondeslivraisons.R;
 import com.example.applicationmobilesupervisiondeslivraisons.activities.MainActivity;
@@ -18,6 +19,8 @@ import com.example.applicationmobilesupervisiondeslivraisons.supabase.SupabaseMa
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +30,7 @@ public class LivreurActivity extends AppCompatActivity {
     private LivraisonAdapter adapter;
     private List<Livraison> mesLivraisons = new ArrayList<>();
     private String uid;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,14 @@ public class LivreurActivity extends AppCompatActivity {
             tvDriver.setText(getString(R.string.driver_format, fullName));
         }
 
-        // RecyclerView
+        // RecyclerView and SwipeRefresh
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_livreur);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setOnRefreshListener(this::loadData);
+            // Set some colors for the refresh indicator
+            swipeRefreshLayout.setColorSchemeResources(R.color.dinex_coral, R.color.dinex_dark);
+        }
+
         RecyclerView recyclerView = findViewById(R.id.recycler_livreur);
         if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,16 +102,7 @@ public class LivreurActivity extends AppCompatActivity {
             });
         }
 
-        // Load deliveries for this driver via SupabaseManager
-        if (uid != null) {
-            SupabaseManager.getLivraisonsParLivreur(uid, list -> {
-                if (list != null) {
-                    mesLivraisons = list;
-                    if (adapter != null) adapter.updateData(list);
-                    updateRemainingCount(list);
-                }
-            });
-        }
+        // Load data is now handled in onResume()
 
         // Logout button
         View btnLogout = findViewById(R.id.btn_logout);
@@ -111,6 +113,50 @@ public class LivreurActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
+            });
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+        if (uid != null) {
+            if (swipeRefreshLayout != null) swipeRefreshLayout.setRefreshing(true);
+            SupabaseManager.getLivraisonsParLivreur(uid, list -> {
+                if (list != null) {
+                    // Sort list: "En attente" first, then by ordrePassage (nearer place)
+                    Collections.sort(list, new Comparator<Livraison>() {
+                        @Override
+                        public int compare(Livraison l1, Livraison l2) {
+                            int p1 = getPriority(l1.getEtat());
+                            int p2 = getPriority(l2.getEtat());
+
+                            if (p1 != p2) {
+                                return Integer.compare(p1, p2);
+                            }
+                            return Integer.compare(l1.getOrdrePassage(), l2.getOrdrePassage());
+                        }
+
+                        private int getPriority(String etat) {
+                            if (etat == null) return 2;
+                            etat = etat.toLowerCase(Locale.ROOT);
+                            if (etat.contains("cours") || etat.contains("transit")) return 1;
+                            if (etat.contains("attente") || etat.contains("pending") || etat.isEmpty()) return 2;
+                            if (etat.contains("livr") || etat.contains("termin") || etat.contains("deliver")) return 3;
+                            if (etat.contains("annul") || etat.contains("echou") || etat.contains("échou") || etat.contains("fail") || etat.contains("refus")) return 4;
+                            return 5;
+                        }
+                    });
+
+                    mesLivraisons = list;
+                    if (adapter != null) adapter.updateData(list);
+                    updateRemainingCount(list);
+                }
+                if (swipeRefreshLayout != null) swipeRefreshLayout.setRefreshing(false);
             });
         }
     }

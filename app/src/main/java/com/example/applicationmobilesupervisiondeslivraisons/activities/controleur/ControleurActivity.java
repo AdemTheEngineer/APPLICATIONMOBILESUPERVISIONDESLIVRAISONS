@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.applicationmobilesupervisiondeslivraisons.R;
 import com.example.applicationmobilesupervisiondeslivraisons.activities.MainActivity;
@@ -17,7 +18,10 @@ import com.example.applicationmobilesupervisiondeslivraisons.supabase.SupabaseMa
 import com.example.applicationmobilesupervisiondeslivraisons.views.DonutChartView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 public class ControleurActivity extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class ControleurActivity extends AppCompatActivity {
     private List<Livraison>  currentList = new ArrayList<>();
     private TextView         tvPending, tvTransit, tvDelivered, tvFailed;
     private DonutChartView   donutChart;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,13 @@ public class ControleurActivity extends AppCompatActivity {
             if (fullName != null && !fullName.trim().isEmpty()) {
                 tvTitle.setText("Dashboard - " + fullName);
             }
+        }
+
+        // ── SwipeRefreshLayout ────────────────────────────────────────────────
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_controleur);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setOnRefreshListener(this::loadLivraisons);
+            swipeRefreshLayout.setColorSchemeResources(R.color.dinex_coral, R.color.dinex_dark);
         }
 
         // ── Logout button ─────────────────────────────────────────────────────
@@ -101,12 +113,38 @@ public class ControleurActivity extends AppCompatActivity {
     }
 
     private void loadLivraisons() {
+        if (swipeRefreshLayout != null) swipeRefreshLayout.setRefreshing(true);
         SupabaseManager.getAllLivraisons(list -> {
             if (list != null) {
+                // Sort list: "En attente" first, then by ordrePassage
+                Collections.sort(list, new Comparator<Livraison>() {
+                    @Override
+                    public int compare(Livraison l1, Livraison l2) {
+                        int p1 = getPriority(l1.getEtat());
+                        int p2 = getPriority(l2.getEtat());
+
+                        if (p1 != p2) {
+                            return Integer.compare(p1, p2);
+                        }
+                        return Integer.compare(l1.getOrdrePassage(), l2.getOrdrePassage());
+                    }
+
+                    private int getPriority(String etat) {
+                        if (etat == null) return 2;
+                        etat = etat.toLowerCase(Locale.ROOT);
+                        if (etat.contains("cours") || etat.contains("transit")) return 1;
+                        if (etat.contains("attente") || etat.contains("pending") || etat.isEmpty()) return 2;
+                        if (etat.contains("livr") || etat.contains("termin") || etat.contains("deliver")) return 3;
+                        if (etat.contains("annul") || etat.contains("echou") || etat.contains("échou") || etat.contains("fail") || etat.contains("refus")) return 4;
+                        return 5;
+                    }
+                });
+
                 currentList = list;
                 adapter.updateData(list);
                 updateStats(list);
             }
+            if (swipeRefreshLayout != null) swipeRefreshLayout.setRefreshing(false);
         });
     }
 

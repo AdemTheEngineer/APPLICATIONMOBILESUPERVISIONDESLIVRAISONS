@@ -45,11 +45,16 @@
             android:contentDescription="Logout" />
     </LinearLayout>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_controleur"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/top_bar"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
         android:baselineAligned="false"
@@ -413,6 +418,7 @@
 
         </LinearLayout>
     </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <!-- Bottom Nav -->
     <LinearLayout
