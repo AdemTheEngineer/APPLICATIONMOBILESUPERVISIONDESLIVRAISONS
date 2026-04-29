@@ -78,7 +78,7 @@
             app:boxStrokeColor="#E5E7EB"
             app:boxStrokeWidth="1dp"
             app:hintEnabled="false"
-            app:startIconDrawable="@android:drawable/ic_menu_search"
+            app:startIconDrawable="@drawable/ic_search_modern"
             app:startIconTint="#9CA3AF">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -221,7 +221,7 @@
         android:contentDescription="@null"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@android:drawable/ic_menu_search"
+            android:src="@drawable/ic_search_modern"
             app:tint="#D1D5DB" />
 
         <TextView
@@ -262,13 +262,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:src="@drawable/ic_dashboard_modern"
                 app:tint="#9CA3AF" />
 
             <TextView
@@ -288,13 +291,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_search"
+                android:src="@drawable/ic_search_modern"
                 app:tint="#2563EB" />
 
             <TextView
@@ -316,13 +322,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_info_details"
+                android:src="@drawable/ic_hub_modern"
                 app:tint="#9CA3AF" />
 
             <TextView

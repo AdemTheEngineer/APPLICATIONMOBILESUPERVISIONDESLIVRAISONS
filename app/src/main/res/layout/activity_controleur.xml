@@ -21,7 +21,7 @@
         android:contentDescription="@null"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_dialog_dialer"
+            android:src="@drawable/ic_dashboard_modern"
             app:tint="@android:color/white" />
 
         <TextView
@@ -39,8 +39,8 @@
             android:id="@+id/btn_exit"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="?attr/selectableItemBackground"
-            android:src="@android:drawable/ic_lock_power_off"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_logout"
             app:tint="@android:color/white"
             android:contentDescription="Logout" />
     </LinearLayout>
@@ -105,7 +105,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="8dp"
-                                android:src="@android:drawable/ic_menu_recent_history"
+                                android:src="@drawable/ic_pending_modern"
                                 app:tint="#F59E0B" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -165,7 +165,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="8dp"
-                                android:src="@android:drawable/ic_menu_send"
+                                android:src="@drawable/ic_transit_modern"
                                 app:tint="#3B82F6" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -225,7 +225,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="8dp"
-                                android:src="@android:drawable/ic_menu_myplaces"
+                                android:src="@drawable/ic_delivered_modern"
                                 app:tint="#10B981" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -285,7 +285,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="8dp"
-                                android:src="@android:drawable/stat_notify_error"
+                                android:src="@drawable/ic_failed_modern"
                                 app:tint="#EF4444" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -433,12 +433,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:src="@drawable/ic_dashboard_modern"
                 app:tint="#3B82F6" />
             <TextView
                 android:layout_width="wrap_content"
@@ -458,12 +461,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_search"
+                android:src="@drawable/ic_search_modern"
                 app:tint="#9CA3AF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -482,12 +488,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
             <ImageView
         android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_info_details"
+                android:src="@drawable/ic_hub_modern"
                 app:tint="#9CA3AF" />
             <TextView
                 android:layout_width="wrap_content"

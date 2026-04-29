@@ -25,7 +25,7 @@
             android:layout_height="28dp"
             android:layout_marginEnd="12dp"
             android:contentDescription="Hub icon"
-            android:src="@drawable/ic_hub"
+            android:src="@drawable/ic_hub_modern"
             app:tint="@color/dinex_coral" />
 
         <TextView
@@ -147,6 +147,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical">
 
@@ -154,7 +156,7 @@
                 android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:src="@drawable/ic_dashboard_modern"
                 app:tint="@color/dinex_text_secondary" />
 
             <TextView
@@ -175,6 +177,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical">
 
@@ -182,7 +186,7 @@
                 android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_search"
+                android:src="@drawable/ic_search_modern"
                 app:tint="@color/dinex_text_secondary" />
 
             <TextView
@@ -202,6 +206,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical">
 
@@ -209,7 +215,7 @@
                 android:contentDescription="@null"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_hub"
+                android:src="@drawable/ic_hub_modern"
                 app:tint="@color/dinex_coral" />
 
             <TextView

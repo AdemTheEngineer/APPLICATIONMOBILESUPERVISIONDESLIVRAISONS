@@ -9,7 +9,9 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
     app:strokeColor="@color/dinex_gray_light"
-    app:strokeWidth="1dp">
+    app:strokeWidth="1dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:baselineAligned="false"
@@ -196,7 +198,7 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_phone"
+                            android:src="@drawable/ic_dialer_modern"
                             app:tint="@color/dinex_gray_light" />
 
                         <TextView
@@ -255,7 +257,9 @@
                     app:cardBackgroundColor="@color/dinex_coral"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="4dp"
-                    app:strokeWidth="0dp">
+                    app:strokeWidth="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="20dp"
